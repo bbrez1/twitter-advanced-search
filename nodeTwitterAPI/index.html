@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+
+        <div ng-app="HelloWorldApp">
+            <div ng-controller="HelloWorldController">
+                <br /><br />
+
+                <form class="form-horizontal">
+                    <fieldset>
+                        <h3>Words</h3>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">All of these words</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.allwords" name="allwords" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">This exact phrase</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.exactphrase" name="exactphrase" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">Any of these words</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.anyword" name="anyword" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">None of these words</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.noneofthese" name="noneofthese" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">These hashtags</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.hashtags" name="hashtags" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="radius">Written in</label>
+                            <div class="col-md-4">
+                                <select class="t1-select" id="lang" name="lang" ng-model="search.lang">
+                                    <option value="all" selected="selected">All languages</option>
+                                    <option disabled="disabled">---</option>
+                                    <option value="en">English (English)</option>
+                                    <option value="ja">Japanese (日本語)</option>
+                                    <option value="ar">Arabic (العربية)</option>
+                                    <option value="es">Spanish (español)</option>
+                                    <option disabled="disabled">---</option>
+                                    <option value="am">Amharic (አማርኛ)</option>
+                                    <option value="hy">Armenian (հայերեն)</option>
+                                    <option value="bn">Bengali (বাংলা)</option>
+                                    <option value="bg">Bulgarian (български)</option>
+                                    <option value="my">Burmese (ဗမာ)</option>
+                                    <option value="ckb">Central Kurdish (کوردیی ناوەندی)</option>
+                                    <option value="zh">Chinese (中文)</option>
+                                    <option value="da">Danish (dansk)</option>
+                                    <option value="dv">Divehi (Divehi)</option>
+                                    <option value="nl">Dutch (Nederlands)</option>
+                                    <option value="et">Estonian (eesti)</option>
+                                    <option value="fi">Finnish (suomi)</option>
+                                    <option value="fr">French (français)</option>
+                                    <option value="ka">Georgian (ქართული)</option>
+                                    <option value="de">German (Deutsch)</option>
+                                    <option value="el">Greek (Ελληνικά)</option>
+                                    <option value="gu">Gujarati (ગુજરાતી)</option>
+                                    <option value="ht">Haitian Creole (Haitian Creole)</option>
+                                    <option value="he">Hebrew (עברית)</option>
+                                    <option value="hi">Hindi (हिन्दी)</option>
+                                    <option value="hu">Hungarian (magyar)</option>
+                                    <option value="is">Icelandic (íslenska)</option>
+                                    <option value="id">Indonesian (Indonesia)</option>
+                                    <option value="it">Italian (italiano)</option>
+                                    <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                                    <option value="km">Khmer (ខ្មែរ)</option>
+                                    <option value="ko">Korean (한국어)</option>
+                                    <option value="lo">Lao (ລາວ)</option>
+                                    <option value="lv">Latvian (latviešu)</option>
+                                    <option value="lt">Lithuanian (lietuvių)</option>
+                                    <option value="ml">Malayalam (മലയാളം)</option>
+                                    <option value="mr">Marathi (मराठी)</option>
+                                    <option value="ne">Nepali (नेपाली)</option>
+                                    <option value="no">Norwegian (norsk)</option>
+                                    <option value="or">Oriya (ଓଡ଼ିଆ)</option>
+                                    <option value="ps">Pashto (پښتو)</option>
+                                    <option value="fa">Persian (فارسی)</option>
+                                    <option value="pl">Polish (polski)</option>
+                                    <option value="pt">Portuguese (português)</option>
+                                    <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                                    <option value="ro">Romanian (română)</option>
+                                    <option value="ru">Russian (русский)</option>
+                                    <option value="sr">Serbian (српски)</option>
+                                    <option value="sd">Sindhi (سنڌي)</option>
+                                    <option value="si">Sinhala (සිංහල)</option>
+                                    <option value="sl">Slovenian (slovenščina)</option>
+                                    <option value="sv">Swedish (svenska)</option>
+                                    <option value="tl">Tagalog (Tagalog)</option>
+                                    <option value="ta">Tamil (தமிழ்)</option>
+                                    <option value="te">Telugu (తెలుగు)</option>
+                                    <option value="th">Thai (ไทย)</option>
+                                    <option value="bo">Tibetan (བོད་སྐད་)</option>
+                                    <option value="tr">Turkish (Türkçe)</option>
+                                    <option value="ur">Urdu (اردو)</option>
+                                    <option value="ug">Uyghur (ئۇيغۇرچە)</option>
+                                    <option value="vi">Vietnamese (Tiếng Việt)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <br /><br />
+
+                    <fieldset>
+                        <h3>People</h3>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">From these accounts</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.fromaccounts" name="fromaccounts" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="location">To these accounts</label>
+                            <div class="col-md-4">
+                                <input id="location" ng-model="search.toaccounts" name="fromaccounts" type="text" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <button id="submit" ng-click="onClick()" name="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div ng-repeat="status in response.data.statuses">
+                    <p><b>{{status.user.screen_name}}</b></p>
+                    <p>{{status.text}}</p>
+                    <br />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

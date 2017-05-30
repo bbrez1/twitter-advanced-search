@@ -1,0 +1,15 @@
+{
+  "name": "node-twitter-api",
+  "version": "0.0.0",
+  "description": "nodeTwitterAPI",
+  "main": "server.js",
+  "author": {
+    "name": "Blaž"
+  },
+  "dependencies": {
+    "angular": "^1.6.4",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "twitter": "^1.7.0"
+  }
+}
