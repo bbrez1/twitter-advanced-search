@@ -1,0 +1,91 @@
+1.
+
+To fully render the example it took around 800 - 900ms (6 groups, 30 filters = 180 items in total)
+
+My solution proposes that we do not render the dropdown menu on load because it's the most time consuming part
+but rather inject the dropdown code when a filter is activated (on checkbox click event)
+
+This means removing 
+
+<select ng-disabled="!filter.enabled">
+  <option ng-repeat="value in filter.Values">{{value}}</option>
+</select>
+
+from the code and adding angular code (this generates the dropdown menu for each clicked filter element)
+
+    var selectHtml = '';
+    selectHtml += '<select  ng-disabled="!filter.enabled">';
+    selectHtml += '<option ng-repeat="value in filter.Values">';
+    selectHtml += '{{value}}';
+    selectHtml += '</option>';
+    selectHtml += '</select> ';
+    selectHtml = $compile(selectHtml)($scope);
+ 
+    $scope.onFilterClick = function (filter,id) {
+      setTimeout(function(){
+         filter.draw = true;
+         var replyHolder =  document.getElementById(id);
+         angular.element(angular.element(replyHolder)).append(selectHtml);
+         $scope.$digest(); 
+      }, 10);      
+    }
+
+This way I was able to render 45 groups each with 45 filters = 2025 items (average 980ms to execute).
+
+I measured the execution time by adding performance.now(); to the start and the end of code and calculating the difference in milliseconds.
+
+
+
+2. 
+
+A) I estimated that it would take around 3-4 hours.
+B) I only cut the parts which were design related (for example I didnt implement location tagging because
+I would have to include google maps (or similar) and it would take too much time in this scope.
+On the backend part it's just a simple 'geocode' parameter like 'geocode=-22.912214,-43.230182,1km' that gets passed
+into the twitter api call.
+
+C) 
+Technologies/frameworks used: angularjs, html, css, nodejs, bootstrap
+
+I've decided to use nodejs on the backend to consume the twitter api (in production environments I never like to use
+api calls on the frontend and expose my api key).
+
+I have left my api information in the project so you guys can test it quickly without making any changes to the code.
+
+I did not spend any time on the design except adding bootstrap and some basic html tags.
+Tweets that are displayed after searching are basic html aswell.
+
+How it works:
+
+After a user makes a search we make a post request to our server and pass in an object with textbox values
+
+
+$scope.search = {
+	allwords: "",
+	exactphrase: "",
+	anyword: "",
+	noneofthese: "",
+	hashtags: "",
+	lang: "",
+	toaccounts: "",
+	fromaccounts: ""
+};
+
+on the backend all of these variables are checked. 
+
+The query has multiple operators that modify its behavior. Eventually we have to build the full query if the user
+decided to search for multiple parameters. Luckily Twitter's search API makes this extremely simple and all we need
+to do is just add queries together. 
+
+For example if we want to search for tweets that include both words: watching and now
+..and it also needs to include "happy hour" we make a query as:
+
+watching now + "happy hour"
+
+watching now	containing both “watching” and “now”. This is the default operator.
+“happy hour”	containing the exact phrase “happy hour”.
+
+a query similar to above but to also find tweets tagget by a specific hashtag our query string would look like:
+
+watching now + "happy hour" + #hashtag
+
